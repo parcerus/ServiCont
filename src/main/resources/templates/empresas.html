@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!--Bootstrap-->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+    <title>Empresas</title>
+</head>
+<body>
+    <main>
+        <div class="px-4 py-5 my-5 text-center">
+            <div class="my-5">
+                <h1 class="display-5 fw-bold mb-bold">Empresas</h1>
+                <a href="/enterprises/new" class="btn btn-secondary">Crear Nueva Empresa</a>
+            </div>
+            <div class="d-flex gap-4 justify-content-center">
+                <div th:each="empresas : ${empresas}" class="card" style="width: 18rem;">
+                    <div>
+                        <img src="img/enterpriseA.png" class="card-img-top" alt="Empresa Activada" style="width: 60px;">
+                    </div>
+                    <div class="card-body">
+                      <h5 class="card-title" th:text="${empresas.nombre}">Nombre de la empresa</h5>
+                      <p class="card-text" th:text="${empresas.nit}">Nit de la empresa</p>
+                      <div class="d-flex flex-column gap-3">
+                        <div>
+                            <form th:action="@{/enterprises/update/{id}(id=${empresas.id})}" th:method="get">
+                                <button type="submit" class="btn btn-primary">Modificar</button>
+                            </form>
+                          </div>
+                          <div>
+                            <form th:action="@{/enterprises/{id}(id=${empresas.id})}" th:method="delete">
+                                <button type="submit" class="btn btn-danger">Eliminar</button>
+                            </form>
+                          </div>
+                      </div>
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </main>
+</body>
+</html>
